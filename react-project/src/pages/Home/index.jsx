@@ -9,8 +9,6 @@ function Home() {
       const responce = await axios.get(
         "https://hacker-news.firebaseio.com/v0/topstories.json"
       );
-      // console.log(responce);
-      // setData(responce.data)
       setData(responce.data);
 
       console.log(data);
