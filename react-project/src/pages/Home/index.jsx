@@ -7,10 +7,7 @@ function Home() {
     try {
       // const responce = await axios.get(" https://hacker-news.firebaseio.com/v0/topstories.json")
       const responce = await axios.get(
-        "https://hacker-news.firebaseio.com/v0/topstories.json"
-      );
-      // console.log(responce);
-      // setData(responce.data)
+        "https://hacker-news.firebaseio.com/v0/topstories.json");
       setData(responce.data);
 
       console.log(data);
