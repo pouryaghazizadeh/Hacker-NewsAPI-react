@@ -2,7 +2,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 function Home() {
+  // this state for get all 500 ids
   const [data, setData] = useState([]);
+  // this function get all500 ids and pass them to empty array by usestate
   const fetchData = async () => {
     try {
       const responceData = await axios.get(
@@ -19,31 +21,54 @@ function Home() {
     }, // eslint-disable-next-line
     []
   );
-  // make randum number
+
+  // make randum number for slice array
   const randumNumber = Math.floor(Math.random() * 490) + 1;
+  // slice array for get 10 randumize ids in array 
   const newRandumData = data.slice(randumNumber, randumNumber + 10);
 
-  const arrOfobj = [];
+  console.log(newRandumData);
+// make array for get value after map on newRandumData
+const value = []
+const a = []
+// map array of ids for get data
+useEffect(()=>{
+  newRandumData.map((id)=>{
 
+    const getValue = async()=>{
+      const objOfValue = await axios.get(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
+      value.push(objOfValue)
+      console.log(value);
+     return a.push(value)
 
- 
-    newRandumData.map((num) => {
-      return fetch(`https://hacker-news.firebaseio.com/v0/item/${num}.json`)
-        .then((data) => data.json())
-        .then((res) => arrOfobj.push(res));
-    });
-  
-  // useEffect(()=>{
-  // rrr()
-  // },
-  // // eslint-disable-next-line
-  // [])
+    }
+    return getValue()
 
+  })
+
+}, // eslint-disable-next-line
+[]
+)
+
+// console.log(a);
 
   return <div></div>;
 }
 
 export default Home;
+
+
+
+
+
+  // newRandumData.map((num) => {
+  //   return fetch(`https://hacker-news.firebaseio.com/v0/item/${num}.json`)
+  //     .then((data) => data.json())
+  //     .then((res) => arrOfobj.push(res));
+  // });
+
+
+
 
 // useEffect(
 //   () => {
