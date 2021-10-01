@@ -26,29 +26,26 @@ function Home() {
   const newRandumData = data.slice(randumNumber, randumNumber + 10);
   console.log(newRandumData);
 
+  // map array for get object of data
   newRandumData.forEach((id) => {
     return getValue(id);
   });
 
-  
+  // array for get object
   const arr = [];
-
+  // functions for get id and fetch
   async function getValue(id) {
     try {
-      //  const res =
       await axios
         .get(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
         .then((i) => {
           return arr.push(i.data);
         });
-
-  
     } catch (err) {
       console.log(err);
     }
-  
   }
- console.log(arr);
+  console.log(arr);
 
   useEffect(
     () => {
@@ -58,20 +55,10 @@ function Home() {
     []
   );
 
-  
-
   return (
     <>
-    <div>helooo</div>
-      <div>
-        {/* {provideData().map((i) => {
-          return (
-            <>
-              <div>{i.score}</div>
-            </>
-          );
-        })} */}
-      </div>
+      <div>helooo</div>
+      <div></div>
     </>
   );
 }
