@@ -26,12 +26,13 @@ function Home() {
   const newRandumData = data.slice(randumNumber, randumNumber + 10);
   console.log(newRandumData);
 
-  newRandumData.filter((id) => {
+  newRandumData.forEach((id) => {
     return getValue(id);
   });
 
-  const arr = [];
   
+  const arr = [];
+
   async function getValue(id) {
     try {
       //  const res =
@@ -41,11 +42,13 @@ function Home() {
           return arr.push(i.data);
         });
 
-      // arr.push(res)
+  
     } catch (err) {
       console.log(err);
     }
+  
   }
+ console.log(arr);
 
   useEffect(
     () => {
@@ -55,19 +58,19 @@ function Home() {
     []
   );
 
-  console.log(arr);
+  
 
   return (
     <>
     <div>helooo</div>
       <div>
-        {arr.map((i) => {
+        {/* {provideData().map((i) => {
           return (
             <>
               <div>{i.score}</div>
             </>
           );
-        })}
+        })} */}
       </div>
     </>
   );
