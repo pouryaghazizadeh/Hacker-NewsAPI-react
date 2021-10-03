@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-function Home() {
+function Card() {
   // this useState is for get value from api
   const [value, setValue] = useState([]);
   useEffect(
@@ -59,4 +59,4 @@ const sorteData = value.sort((a,b)=>{return(b.score - a.score)})
   );
 }
 
-export default Home;
+export default Card;
