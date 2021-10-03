@@ -1,9 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Random from "../Random.js";
 
 function Home() {
-  const [random, setRandom] = useState(0);
   // this useState is for get value from api
   const [value, setValue] = useState([]);
   useEffect(
@@ -14,13 +12,16 @@ function Home() {
             "https://hacker-news.firebaseio.com/v0/topstories.json"
           );
 
-          // slise array to be arrray of 10 property random
+          // make random number for slice array
+          const randomNumber = Math.floor(Math.random() * 490) + 1;
+          // slice array for get 10 randomize ids in array
           const randomData = await responseData.data.slice(
-            setRandom(Random(responseData.data) - 10),
-            random + 10
+            randomNumber,
+            randomNumber + 10
           );
 
           console.log("your random data is:", randomData);
+
           const response = Promise.all(
             (await randomData) &&
               randomData.map((id) => {
@@ -51,8 +52,8 @@ function Home() {
   return (
     <>
       <div>
-        {value.map((i,f) => {
-          return <div key = {f}>{i.score}</div>;
+        {value.map((i, f) => {
+          return <div key={f}>{i.score}</div>;
         })}
       </div>
     </>
