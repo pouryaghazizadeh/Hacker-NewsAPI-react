@@ -39,20 +39,19 @@ function Home() {
           console.error("your error", err);
         }
       };
-
-      // call async function
       fetchData();
       //
     }, // eslint-disable-next-line
     []
   );
+  // sort array Based on score
+const sorteData = value.sort((a,b)=>{return(b.score - a.score)})
 
-  // console.log("lest value :",;
-  console.log("your value is:", value);
+  console.log("your value is:",sorteData);
   return (
     <>
       <div>
-        {value.map((i, f) => {
+        {sorteData.map((i, f) => {
           return <div key={f}>{i.score}</div>;
         })}
       </div>
