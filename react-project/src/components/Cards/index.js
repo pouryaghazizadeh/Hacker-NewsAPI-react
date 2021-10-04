@@ -1,5 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import User  from "../User/index";
+
 
 function Card() {
   // this useState is for get value from api
@@ -20,8 +23,6 @@ function Card() {
             randomNumber + 10
           );
 
-          console.log("your random data is:", randomData);
-
           const response = Promise.all(
             (await randomData) &&
               randomData.map((id) => {
@@ -30,9 +31,8 @@ function Card() {
                   .then((v) => v.data);
               })
           );
-          response.then((response) => setValue(response));
 
-          return response;
+          return response.then((response) => setValue(response));
 
           //  response;
         } catch (err) {
@@ -45,15 +45,35 @@ function Card() {
     []
   );
   // sort array Based on score
-const sorteData = value.sort((a,b)=>{return(b.score - a.score)})
+  const sorteData = value.sort((a, b) => {
+    return b.score - a.score;
+  });
 
-  console.log("your value is:",sorteData);
+
   return (
     <>
-      <div>
-        {sorteData.map((i, f) => {
-          return <div key={f}>{i.score}</div>;
+      <div className="container-card">
+        {sorteData.map((value, i) => {
+          return (
+            <div key={i} className="fg">
+              <Link
+                to={`${value.url}  
+            `}
+                className=""
+              >
+                Title:{value.title}
+              </Link>
+              <ul>
+                <li>Score:{value.score}</li>
+                {/* <li>Url:{value.url}</li> */}
+                <li>time:{value.time}</li>
+
+              </ul>
+            </div>
+          );
         })}
+
+        <User sorteData={sorteData}/>
       </div>
     </>
   );
