@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import User  from "../User/index";
-
+import User from "../User/index";
 
 function Card() {
-  // this useState is for get value from api
+  // this useState is for get value from api//
   const [value, setValue] = useState([]);
+  // const [sort, setSort] = useState([]);
+  // const [userData, setUserData] = useState([]);
   useEffect(
     () => {
       const fetchData = async () => {
@@ -28,13 +29,16 @@ function Card() {
               randomData.map((id) => {
                 return axios
                   .get(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
-                  .then((v) => v.data);
+                  .then((v) =>v.data);
               })
           );
+          
+         return response.then((response) => setValue(response));
 
-          return response.then((response) => setValue(response));
 
-          //  response;
+
+
+
         } catch (err) {
           console.error("your error", err);
         }
@@ -45,15 +49,21 @@ function Card() {
     []
   );
   // sort array Based on score
-  const sorteData = value.sort((a, b) => {
+// console.log(value);
+
+ const sortData = value.sort((a, b) => {
     return b.score - a.score;
   });
+
+
+
+
 
 
   return (
     <>
       <div className="container-card">
-        {sorteData.map((value, i) => {
+        {sortData.map((value, i) => {
           return (
             <div key={i} className="fg">
               <Link
@@ -65,16 +75,18 @@ function Card() {
               </Link>
               <ul>
                 <li>Score:{value.score}</li>
-                {/* <li>Url:{value.url}</li> */}
+                {/* {/* <li>Url:{value.url}</li>  */}
                 <li>time:{value.time}</li>
 
               </ul>
             </div>
           );
         })}
+        {/* {console.log("hi data",sortData)}*/}
+ {sortData.length && <User sortData={sortData} />} 
 
-        <User sorteData={sorteData}/>
-      </div>
+      </div> 
+   
     </>
   );
 }
