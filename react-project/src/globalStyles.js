@@ -13,15 +13,16 @@ const GlobalStyle = createGlobalStyle`
     margin-top: 10px;
 }
 .container-card{
-    margin-top: 30px;
+    /* margin-top: 30px; */
+    height: 100%;
+
 
 }
 .card{
-    background: red;
-    margin: 10px;
+    background-color: green;
     width: 70vw;
-    
-
+    height: 200px;
+    margin: 60ox;
 }
 .fg{
 margin-top: 19px;
@@ -30,6 +31,16 @@ margin-top: 19px;
 }
 .w{
     margin-top: 10px;
+}
+.h{
+    display: flex;
+    flex-wrap: wrap;
+    /* position: absolute; */
+    /* top: 19px; */
+    /* padding: 20px; */
+}
+.d{
+
 }
 `;
 
