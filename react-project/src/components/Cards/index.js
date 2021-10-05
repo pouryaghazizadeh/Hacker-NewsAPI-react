@@ -1,10 +1,14 @@
+import { createContext, useEffect, useState } from "react";
 import axios from "axios";
-import React, { createContext, useEffect, useState } from "react";
+// components
 import User from "../User/index";
+// styles
 import { Cards, Items, Title,ContainerDetails,Detail ,Container} from "./view";
-// use context
+// 
+// create context
 export const appContext = createContext(null);
 function Card() {
+  // for get value array of data
   const [value, setValue] = useState([]);
 
   useEffect(
@@ -14,11 +18,14 @@ function Card() {
           const responseData = await axios.get(
             "https://hacker-news.firebaseio.com/v0/topstories.json"
           );
+          // create random data for get array of 10 random id 
           const randomNumber = Math.floor(Math.random() * 490) + 1;
+          
           const randomData = await responseData.data.slice(
             randomNumber,
             randomNumber + 10
           );
+          //  map ids and fetch data
           const response = Promise.all(
             (await randomData) &&
               randomData.map((id) => {
@@ -37,16 +44,19 @@ function Card() {
     }, // eslint-disable-next-line
     []
   );
-
+// sort data Based on the stories score.
   const sortData = value.sort((a, b) => {
     return b.score - a.score;
   });
 
   return (
     <>
+
       <appContext.Provider value={{ sortData }}>
         <Container>
-          {sortData.map((value, i) => {
+
+          {
+          sortData.map((value, i) => {
             console.log(value);
             return (
               <Cards key={i}>

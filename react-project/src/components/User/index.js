@@ -2,9 +2,7 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { appContext } from "../Cards/index";
 // style
-import{UserDetail,ContainerUser } from "./view"
-
-
+import { ContainerUser, UserDetail } from "./view";
 
 function User({ user }) {
   const { sortData } = useContext(appContext);
@@ -15,7 +13,7 @@ function User({ user }) {
         try {
           const getUser = Promise.all(
             (await sortData) &&
-            // eslint-disable-next-line 
+              // eslint-disable-next-line
               sortData.map((value) => {
                 if (value.by === user) {
                   return axios
@@ -39,18 +37,19 @@ function User({ user }) {
   );
   return (
     <>
-      
-      {// eslint-disable-next-line 
-      userData.map((value, i) => {
-        if (value !== undefined) {
-          return (
-            <ContainerUser key={i}>
-              <UserDetail>Karma:{value.karma ? value.karma : ""}</UserDetail>
-              <UserDetail>Author id:{value.id}</UserDetail>
-            </ContainerUser>
-          );
-        }
-      })}
+      {
+        // eslint-disable-next-line
+        userData.map((value, i) => {
+          if (value !== undefined) {
+            return (
+              <ContainerUser key={i}>
+                <UserDetail>Karma:{value.karma ? value.karma : ""}</UserDetail>
+                <UserDetail>Author id:{value.id}</UserDetail>
+              </ContainerUser>
+            );
+          }
+        })
+      }
     </>
   );
 }
