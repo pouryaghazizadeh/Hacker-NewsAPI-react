@@ -5,7 +5,7 @@
 ## Available Scripts
 
 
-### for run app use :
+### to run the app use :
 
 ```bash
 npm start
@@ -14,7 +14,7 @@ Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 
-### for test app use :
+### to test app use :
 ```bash
 npm test
 ```
@@ -28,7 +28,7 @@ npm run build
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 # run app
-pleas go to folder react-project with:
+please go to folder react-project with:
 ```bash
 cd react-project
 ```

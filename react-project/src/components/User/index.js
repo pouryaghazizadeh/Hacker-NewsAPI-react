@@ -3,18 +3,20 @@ import React, { useContext, useEffect, useState } from "react";
 import { appContext } from "../Cards/index";
 // style
 import { ContainerUser, UserDetail } from "./view";
-
+// User components that contains an unordered list 
 function User({ user }) {
   const { sortData } = useContext(appContext);
   const [userData, setUserData] = useState([]);
   useEffect(
     () => {
+      // iterate through sorted array and fetch the data
       const fetchUsers = async () => {
         try {
           const getUser = Promise.all(
             (await sortData) &&
               // eslint-disable-next-line
               sortData.map((value) => {
+                // check users
                 if (value.by === user) {
                   return axios
                     .get(
@@ -24,6 +26,7 @@ function User({ user }) {
                 }
               })
           );
+
           return getUser.then((v) => setUserData(v));
         } catch (err) {
           console.error(err);
@@ -40,6 +43,7 @@ function User({ user }) {
       {
         // eslint-disable-next-line
         userData.map((value, i) => {
+          // iterate through userData if the value wasn't undefined
           if (value !== undefined) {
             return (
               <ContainerUser key={i}>
