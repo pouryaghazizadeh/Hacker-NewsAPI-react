@@ -7,8 +7,6 @@ const GlobalStyle = createGlobalStyle`
     box-sizing:border-box;
     max-width: 1400;
 }
-
-
 `;
 
 export default GlobalStyle;

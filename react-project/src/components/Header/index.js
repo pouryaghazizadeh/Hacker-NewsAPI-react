@@ -1,14 +1,11 @@
-import React from 'react'
 // style
-import { Nav,H1 }from "./view"
-
+import { H1, Nav } from "./view";
 function Header() {
-    return (
-        <Nav>
-            <H1>HackerNewsApi</H1>
-            
-        </Nav>
-    )
+  return (
+    <Nav>
+      <H1>HackerNewsApi</H1>
+    </Nav>
+  );
 }
 
-export default Header
+export default Header;

@@ -1,7 +1,7 @@
 // components
 import Header from "./components/Header";
 import Card from "./components/Cards";
-// tyle
+// style
 import GlobalStyle from "./globalStyles";
 function App() {
   return (
