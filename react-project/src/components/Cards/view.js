@@ -41,6 +41,7 @@ export const Title = styled.a`
   text-decoration: none;
   cursor: pointer;
 `;
+// contaning two unordered lists
 export const ContainerDetails = styled.div`
   display: flex;
   justify-content: space-between;
