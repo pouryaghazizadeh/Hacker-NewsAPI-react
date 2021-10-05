@@ -1,13 +1,12 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { createContext, useEffect, useState } from "react";
 import User from "../User/index";
-
+import{Cards,Container ,Item ,Url}from "./view"
+// use context
+export const appContext = createContext(null);
 function Card() {
-  // this useState is for get value from api//
   const [value, setValue] = useState([]);
-  // const [sort, setSort] = useState([]);
-  // const [userData, setUserData] = useState([]);
+
   useEffect(
     () => {
       const fetchData = async () => {
@@ -15,30 +14,20 @@ function Card() {
           const responseData = await axios.get(
             "https://hacker-news.firebaseio.com/v0/topstories.json"
           );
-
-          // make random number for slice array
           const randomNumber = Math.floor(Math.random() * 490) + 1;
-          // slice array for get 10 randomize ids in array
           const randomData = await responseData.data.slice(
             randomNumber,
             randomNumber + 10
           );
-
           const response = Promise.all(
             (await randomData) &&
               randomData.map((id) => {
                 return axios
                   .get(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
-                  .then((v) =>v.data);
+                  .then((v) => v.data);
               })
           );
-          
-         return response.then((response) => setValue(response));
-
-
-
-
-
+          return response.then((response) => setValue(response));
         } catch (err) {
           console.error("your error", err);
         }
@@ -48,45 +37,34 @@ function Card() {
     }, // eslint-disable-next-line
     []
   );
-  // sort array Based on score
-// console.log(value);
 
- const sortData = value.sort((a, b) => {
+  const sortData = value.sort((a, b) => {
     return b.score - a.score;
   });
 
-
-
-
-
-
   return (
     <>
-      <div className="container-card">
-        {sortData.map((value, i) => {
-          return (
-            <div key={i} className="fg">
-              <Link
-                to={`${value.url}  
-            `}
-                className=""
-              >
-                Title:{value.title}
-              </Link>
-              <ul>
-                <li>Score:{value.score}</li>
-                {/* {/* <li>Url:{value.url}</li>  */}
-                <li>time:{value.time}</li>
+      <appContext.Provider value={{ sortData }}>
+        <div Container >
+          {sortData.map((value, i) => {
+            console.log(value);
+            return (
+                <Cards key={i} >
+              <Url href={value.url}>
+                  <h2>{value.title}</h2>
+              </Url>
 
-              </ul>
-            </div>
-          );
-        })}
-        {/* {console.log("hi data",sortData)}*/}
- {sortData.length && <User sortData={sortData} />} 
+                  <Item>
+                    <li>Score:{value.score}</li>
+                    <li>time:{value.time}</li>
+                  <User user={value.by} />
 
-      </div> 
-   
+                  </Item>
+                </Cards>
+            );
+          })}
+        </div>
+      </appContext.Provider>
     </>
   );
 }
