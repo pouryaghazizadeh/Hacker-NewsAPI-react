@@ -11,7 +11,7 @@ export const Cards = styled.div`
   height: 120px;
   background-color: #0047ab;
   margin: 30px;
-  box-shadow:  2px 2px 9px rgba(0, 0, 0, 0.8);
+  box-shadow:  2px 5px 9px rgba(0, 0, 0, 0.8);
   @media screen and (max-width: 1200px) {
     height: 140px;
   }
@@ -28,6 +28,10 @@ export const Cards = styled.div`
     height: 250px;
     /* flex-direction: column; */
   }
+&:hover{
+    transition: all 0.4s ease 0s;
+    transform: scale(1.1);
+}
 `;
 
 export const Title = styled.a`
