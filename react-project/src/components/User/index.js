@@ -1,6 +1,11 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { appContext } from "../Cards/index";
+// style
+import{UserDetail,ContainerUser } from "./view"
+
+
+
 function User({ user }) {
   const { sortData } = useContext(appContext);
   const [userData, setUserData] = useState([]);
@@ -33,20 +38,20 @@ function User({ user }) {
     []
   );
   return (
-    <div className="w">
+    <>
       
       {// eslint-disable-next-line 
       userData.map((value, i) => {
         if (value !== undefined) {
           return (
-            <li key={i}>
-              <li>k Karma:{value.karma ? value.karma : ""}</li>
-              <li>Author id:{value.id}</li>
-            </li>
+            <ContainerUser key={i}>
+              <UserDetail>Karma:{value.karma ? value.karma : ""}</UserDetail>
+              <UserDetail>Author id:{value.id}</UserDetail>
+            </ContainerUser>
           );
         }
       })}
-    </div>
+    </>
   );
 }
 

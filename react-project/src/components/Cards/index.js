@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
 import User from "../User/index";
-import{Cards,Container ,Item ,Url}from "./view"
+import { Cards, Items, Title,ContainerDetails,Detail ,Container} from "./view";
 // use context
 export const appContext = createContext(null);
 function Card() {
@@ -45,25 +45,25 @@ function Card() {
   return (
     <>
       <appContext.Provider value={{ sortData }}>
-        <div Container >
+        <Container>
           {sortData.map((value, i) => {
             console.log(value);
             return (
-                <Cards key={i} >
-              <Url href={value.url}>
+              <Cards key={i}>
+                <Title href={value.url}>
                   <h2>{value.title}</h2>
-              </Url>
-
-                  <Item>
-                    <li>Score:{value.score}</li>
-                    <li>time:{value.time}</li>
+                </Title>
+                <ContainerDetails>
+                  <Items>
+                    <Detail>Score:{value.score}</Detail>
+                    <Detail>Time:{value.time}</Detail>
+                  </Items>
                   <User user={value.by} />
-
-                  </Item>
-                </Cards>
+                </ContainerDetails>
+              </Cards>
             );
           })}
-        </div>
+        </Container>
       </appContext.Provider>
     </>
   );
